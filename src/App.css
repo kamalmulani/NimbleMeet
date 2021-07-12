@@ -1,38 +1,55 @@
-.App {
+
+.App{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.videoPannel {
+  background: radial-gradient(#041953, black);
+  /*background-color: black;   */
+  max-height: calc(100vh - 69px);
+  display: flex;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  flex:10;
+  transition: 500ms;
+  position: relative;
+  overflow: hidden;
+}
+
+.track video
+{
+  max-width: 100%;
+  
+  background-color: #282c34;
+  margin-top: 2%;
+  background-repeat: no-repeat;
+  transform: scale(-1,1);
+}
+
+.track{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.audio{
+  display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.conferenceRoom{
+  width:100% !important;
+  transition: 500ms;
+  margin-left:0 !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.conferenceRoomAside{
+  width:75vw !important;
+}
+
+.connectingDialog{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

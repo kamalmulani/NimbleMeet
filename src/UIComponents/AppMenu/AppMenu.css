@@ -1,0 +1,36 @@
+.optionsContainer{
+    
+}
+
+.option{
+    margin: 5%;
+    display: flex;
+    font-size: 0.8rem;
+    flex-direction: column;
+    padding: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+#userProfile{
+    background: blueviolet;
+}
+
+
+#meetings{
+    background: blue;
+}
+
+#startMeetings{
+    background: seagreen;
+}
+
+#logOut{
+    background: crimson;
+}
+
+.optionsIcon{
+    font-size: 10vw !important;
+}

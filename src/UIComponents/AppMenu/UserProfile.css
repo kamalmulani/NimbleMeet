@@ -1,0 +1,18 @@
+.topBar{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+.userProfilePaper{
+    max-width: fit-content;
+    margin: auto;
+}
+
+.textField{
+    width: 20rem;
+}
+
+.bottomButtons{
+    margin: 0 5% !important;
+}

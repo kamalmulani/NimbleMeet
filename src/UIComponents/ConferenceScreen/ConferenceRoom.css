@@ -1,0 +1,14 @@
+.participants{
+    margin: auto;
+    max-width: 99%;
+  }
+
+.displayedRoomName{
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  background: grey;
+  border-radius: 20px;
+  font-size: medium;
+  padding: 6px;
+}

@@ -1,0 +1,38 @@
+.bottomPannel{
+    color: white;
+    flex:1;
+    background-color: #202124;
+  
+}
+  
+.bottomPannelButtonList{
+    height: 100%;
+    margin: 0 !important;
+}
+
+.endCallIcon{
+    display: none !important;
+}
+
+.bottomTitle{
+    text-align: center;
+    height: 100%;
+    display: flex;
+    font-size: 40px !important;
+    font-weight: 600 !important;
+    font-family: monospace !important;
+    color: cornflowerblue;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1100px) {
+    .endCallButton {
+      display: none !important;
+    }
+
+    .endCallIcon{
+        display: unset !important;
+    }
+  }
+

@@ -1,0 +1,35 @@
+.localVideoTrackTest video{
+    width: 80%;
+    margin: 1% 5%;
+    border: black solid 2px;
+    border-radius: 20px;
+}
+
+#trackToogleButtons {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    align-items: center;
+}
+
+#trackToogleButtons Button{
+    width: 60%;
+    margin: 3%;
+}
+
+#DeviceConfigContainer{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#audioLevelMeter{
+    width: 80%;
+    margin: 1% 5%;
+    border: black solid 2px;
+    background: white !important;
+}
+
+#audioLevelText{
+    margin: 0 5%;
+}

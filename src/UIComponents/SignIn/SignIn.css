@@ -1,0 +1,59 @@
+.signIn{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: black;
+
+}
+
+.signInContainer{
+    display: flex !important;
+    flex-direction: column;
+    padding: 2%;
+    background: white;
+    margin: auto;
+}
+
+.googleSignIn{
+    margin: 5% 0 !important;
+}
+
+.signUpFieldContainer{
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    justify-content: space-around;
+}
+.signInFieldContainer{
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    justify-content: space-around;
+}
+
+.title{
+    text-align: center;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 45px;
+    margin: 3vh 0;
+}
+
+.logInOptionsContainer{
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    margin: 2vh 0;
+}
+
+.logInOptionsButtons{
+    width:45%
+}
+
+.forgetPassword{
+    text-align: end;
+    color:blue;
+    cursor:pointer;
+}
+

@@ -1,0 +1,21 @@
+.sideDrawerOpen{
+    position: absolute;
+    height: 95%;
+    width: 23%;
+    right: 2%;
+    border-radius: 20px;
+    background-color: white;
+    transition:500ms;
+    overflow:hidden;
+}
+
+@media screen and (max-width: 1100px)  {
+    .sideDrawerOpen{
+        width: 95%;
+    }
+}
+
+.sideDrawerClose{
+    width: 0%;
+    overflow: hidden;
+}
