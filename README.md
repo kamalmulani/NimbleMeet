@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# NimbleMeet - A video Call Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> [**NimbleMeet**](https://teamsclone-hosting.web.app/) is a platform for you to conduct all your meet ups, conferences, classes and video calls. This platform was built during [Engage ’21](https://microsoft.acehacker.com/engage2021/). If you want to dive in directly and use the platform for all your video calls and communication, you can refer to this [video]().
 
-## Available Scripts
+**Try out the application [HERE](https://teamsclone-hosting.web.app/)**
 
-In the project directory, you can run:
+For more details you can see the :
+- [End-user Documentation.](https://github.com/prophet-x/NimbleMeet/tree/master/documentation/)
+- [Project Documentation.](https://github.com/prophet-x/NimbleMeet/tree/master/documentation/)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. 	Host and join a meeting.
+2.	Add up to 20 participants in a video call.
+3.	Chat in between calls.
+4.	Schedule meetings.
+5.	Restrict the meetings and have control over who can join it.
+6.	Have a conversation before and after the meeting.
+7.	a meeting logs to access all your meetings in one place.
+8.	Authenticaion.
+9.	Manage your user profile.
+10. Responsive UI.
 
-### `npm test`
+---
+## Technologies used
+-	**Node.js** – An open-source, cross-platform, back-end JavaScript runtime environment used to run the applications.
+-	**React JS** - a free and open-source front-end JavaScript library for building user interfaces or UI components. Maintained by Facebook React is used to develop single page progressive web apps
+-	**Firebase** – A cloud-hosted Realtime NoSQL database used to store and sync data between users in Realtime. Also used to authenticate and manage users.
+-	**Twilio Programmable video** – A SDK Build on top of WebRTC with a set of flexible APIs that integrate video into apps. This is used to create and manage video rooms and WebRTC channels.
+-	**Twilio Programmable chat** – A SDK used to create and manage communication channels for chat.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
+## WebRTC Architecture used
 
-### `npm run build`
+NimbleMeet uses Twilio programable Video for video calls. Twilio programmable video is a SDK built on top of WebRTC for creating RealTime communication applications. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> There were three options for WebRTC architecture :
+>- ***Peer-to-peer*** network
+>- ***MCU*** - Multipoint Conferencing Unit
+>- ***SFU***- Standard Forwarding Unit
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I went on to use **SFU architecture** as it suits the best for my application requirements. For more details refer to [Project Documentation](https://github.com/prophet-x/NimbleMeet/tree/master/documentation).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## **Agile Methodology**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+>The agile approach is based on teamwork, close collaboration with customers and stakeholders, flexibility, and ability to quickly respond to changes. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+During Engage '21 we were Advised to use agile methodology so we can integrate a suprise feature during the build.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## **Agile RoadMap**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+For more detail refer [Agile Process Documentation]()
 
-## Learn More
+| Week | Task Completed | Backlog |
+------------ | ------------- | ---
+|Week 1 | 1. Compared and selected TechStack | NIL
+-|2. Designed UI and Database  | 
+-|3. Researched on WebRTC|
+Week 2 | 1. Implemented video call | 1. Refactoring of code
+-|2. implemented the call UI | 2. commenting the code
+-| 3. brokedown application into smaller components| 3. Make UI responsive 
+Week 3 | 1. added participant support up to 20 people | 1. Create Login Screen
+-|2. Made UI responsive | 2. Create Firebase Database
+-| 3. Refactored the code| 3. Add Suprise Feature 
+-|4. Added In call Chat|
+Week 4 | 1. Added Suprise Feature | 1. Commenting Code
+-|2. Added user authentication | -
+-| 3. Added other functions like schedule meet and admin control| 3. Documentation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Installation
 
-### Code Splitting
+In the project directory, run `npm install` to install all the dependencis. then run `npm start` to run the application on localhost. Use `npm run build` to create a production build (in **\build** folder) for deployment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Dependencies
 
-### Analyzing the Bundle Size
+NimbleMeet runs on **Node js** and uses **React JS** for front end and
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Following the dependencies used by NimbleMeet :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- @date-io/date-fns
+- material-ui
+- kendo-react-conversational-ui
+- firebase
+- twilio-chat
+- twilio-video
