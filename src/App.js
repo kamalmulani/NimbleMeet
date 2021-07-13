@@ -73,6 +73,13 @@ class App extends Component {
         name: this.state.roomName, // unique room name
         tracks: tracks,
       });
+
+      room.once('disconnected', (room, error) => {
+        if (error) {
+          this.setState({connectingError: error.message})
+          this.leaveRoom();
+        }
+      });
   
       this.setState({ room: room, tracks:tracks});
 
