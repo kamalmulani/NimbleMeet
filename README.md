@@ -5,8 +5,8 @@
 **Try out the application [HERE](https://teamsclone-hosting.web.app/)**
 
 For more details you can see the :
-- [End-user Documentation.](https://github.com/prophet-x/NimbleMeet/tree/master/documentation/)
-- [Project Documentation.](https://github.com/prophet-x/NimbleMeet/tree/master/documentation/)
+- [End-user Documentation.](https://github.com/prophet-x/NimbleMeet/tree/master/Documentation)
+- [Project Documentation.](https://github.com/prophet-x/NimbleMeet/tree/master/Documentation)
 
 ---
 
@@ -53,7 +53,7 @@ During Engage '21 we were Advised to use agile methodology so we can integrate a
 
 ## **Agile RoadMap**
 
-For more detail refer [Agile Process Documentation]()
+For more detail refer [Agile Process Documentation](https://github.com/prophet-x/NimbleMeet/tree/master/Documentation)
 
 | Week | Task Completed | Backlog |
 ------------ | ------------- | ---
