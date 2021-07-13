@@ -9,6 +9,7 @@ class DataTrack extends Component {
       }
 
       componentDidMount() {
+        // get append and attach the media track to the dom
         if (this.props.track != null) {
           var child = this.props.track.attach();
           this.ref.current.classList.add(this.props.track.kind);

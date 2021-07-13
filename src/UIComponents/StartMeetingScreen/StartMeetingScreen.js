@@ -9,10 +9,12 @@ const { createLocalVideoTrack, createLocalAudioTrack} = require('twilio-video');
 class StartMeetingScreen extends Component {
     constructor(props) {
         super(props);
+        // start and store the local media tracks
         this.startLocalVideo = this.startLocalVideo.bind(this);
         this.startLocalAudio = this.startLocalAudio.bind(this);
         this.localVideoRef = React.createRef();
         this.localAudioRef = React.createRef();
+        // methods to enable and disable the cam and mic
         this.toogleVideo = this.toogleVideo.bind(this);
         this.toogleAudio = this.toogleAudio.bind(this);
         this.closeScreen = this.closeScreen.bind(this);
@@ -26,9 +28,6 @@ class StartMeetingScreen extends Component {
             tracks:[],
             isVideoReady:false,
             isAudioReady: false,
-
-
-
          }
     }
 

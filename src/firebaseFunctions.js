@@ -6,6 +6,7 @@ export const writeUserData = (user) => {
     });
 }
 
+// external function to be used to write user data
 
 
 

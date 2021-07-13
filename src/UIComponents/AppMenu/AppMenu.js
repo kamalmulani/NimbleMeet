@@ -3,7 +3,6 @@ import { AccountBox, Duo, VideoCall, ExitToApp } from '@material-ui/icons';
 import React,{Component} from 'react';
 import {auth} from '../../firebase'
 import "./AppMenu.css"
-
 import UserProfile from './UserProfile';
 import MeetingsList from './MeetingsList';
 
@@ -11,23 +10,24 @@ class AppMenu extends Component {
     constructor(props) {
         super(props);
 
-        this.screenRouter = this.screenRouter.bind(this);
-        this.changeScreen = this.changeScreen.bind(this);
+        this.screenRouter = this.screenRouter.bind(this); // method to show the sclected screen
+        this.changeScreen = this.changeScreen.bind(this); // method to change the sclected screen
 
         this.state = { 
-            selectedScreen :'',
-            user:this.props.user,
+            selectedScreen :'', // state of the sclected screen default is empty screen
+            user:this.props.user, // the user data
          }
     }
 
-
-
     changeScreen(screenTitle){
-
-            this.setState({selectedScreen: screenTitle})
+        this.setState({selectedScreen: screenTitle}) // change the screen based on selected option
     }
 
     screenRouter(){
+
+        // show the screen based on selected option
+        // If no screen is selected show default screens i.e, options
+
         if(this.state.selectedScreen == ''){
             return(
                 <Container maxWidth="md">
@@ -42,17 +42,19 @@ class AppMenu extends Component {
                 </Grid> 
 
                 <Grid item xs={6} >
-                    <div className="option" id="meetings" onClick={() => this.changeScreen('meetingScreen')}>
+                    <div className="option" id="meetings" 
+                    onClick={() => this.changeScreen('meetingScreen')}>      
                     <Duo className="optionsIcon" />
                     <Typography>All Meetings</Typography>
                     </div>
                 </Grid>  
 
                 <Grid item xs={6} >
-                    <div className="option" id="userProfile" onClick={() => this.changeScreen('userProfile')}>
-                <AccountBox className="optionsIcon" />
-                <Typography>User Profile</Typography>
-                </div>
+                    <div className="option" id="userProfile" 
+                    onClick={() => this.changeScreen('userProfile')}>
+                    <AccountBox className="optionsIcon" />
+                    <Typography>User Profile</Typography>
+                    </div>
                 </Grid>
 
                 <Grid item xs={6} >
@@ -68,12 +70,14 @@ class AppMenu extends Component {
         }
 
         else if(this.state.selectedScreen == 'userProfile'){
-            return (<UserProfile user={this.props.user} changeScreen={this.changeScreen} />)
+            return (<UserProfile user={this.props.user} 
+                     changeScreen={this.changeScreen} />)
         }
 
         else if(this.state.selectedScreen == 'meetingScreen'){
             return(<MeetingsList 
-                user={this.props.user} changeScreen={this.changeScreen} toogleStartMeetingScreen={this.props.toogleStartMeetingScreen} />)
+                user={this.props.user} changeScreen={this.changeScreen} 
+                toogleStartMeetingScreen={this.props.toogleStartMeetingScreen} />)
         }
     }
 

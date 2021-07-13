@@ -9,8 +9,13 @@ import { db } from '../../firebase';
 class MeetingsList extends Component {
     constructor(props) {
         super(props);
+        // return the Dom element of the meeting lists
         this.meetingsList = this.meetingsList.bind(this);
+
+        // if user selects a meeting then set selected meeting to the meeting uid
         this.setSelectedMeeting = this.setSelectedMeeting.bind(this);
+
+        // returns the selected meeting screen
         this.meetingScreen = this.meetingScreen.bind(this);
         this.state = { 
             selectedMeeting:null,
@@ -18,12 +23,12 @@ class MeetingsList extends Component {
          }
     }
 
+    // compare method for meetings to sort by their time
     compareMeetingsByDate(a, b){
         if(a.scheduledAt.seconds > b.scheduledAt.seconds)
             return -1
         else if(a.scheduledAt.seconds < b.scheduledAt.seconds)
             return 1
-        
     }
 
     componentDidMount(){
@@ -53,6 +58,7 @@ class MeetingsList extends Component {
 
     }
 
+    // method to convert firebase timestamp to string and date object
     convertTimestampToString( timestamp ){
         const dateObj = new firebase.firestore.Timestamp(timestamp.seconds, timestamp.nanoseconds);
         const date = dateObj.toDate();
@@ -77,9 +83,7 @@ class MeetingsList extends Component {
     }
 
     setSelectedMeeting( meeting ){
-        
         this.setState({selectedMeeting: meeting});
-
     }
 
     meetingsList(){

@@ -10,6 +10,7 @@ class BottomPannel extends Component{
     }
 
     render() {
+        // if the user is not in meeting return the application name
         if(this.props.room == null){
             return (
                 <Container className="bottomPannel" justify="center" maxWidth={false}>
@@ -19,6 +20,7 @@ class BottomPannel extends Component{
         }
 
         else{
+            // else return the options for meeting
             return(
                 <Container className="bottomPannel" maxWidth={false}>
 

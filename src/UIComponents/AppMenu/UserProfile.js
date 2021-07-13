@@ -8,8 +8,10 @@ import { ArrowBack, Close, Done } from '@material-ui/icons';
 class UserProfile extends Component {
     constructor(props) {
         super(props);
+        // methods to handle the inputs
         this.handleNameChange = this.handleNameChange.bind(this);
         this.saveProfile = this.saveProfile.bind(this);
+
         this.state = { 
             userDisplayName: this.props.user.displayName,
             userEmail: this.props.user.email,
@@ -23,6 +25,7 @@ class UserProfile extends Component {
         this.setState({ userDisplayName: event.target.value})
     }
 
+    // save and update the user profile
     saveProfile(){
         if(this.state.userDisplayName == ''){
             this.setState({userDisplayNameError: true})

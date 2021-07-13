@@ -2,6 +2,7 @@ import { Button, Paper,IconButton, CircularProgress, Divider, Checkbox, FormCont
           List, ListItem, ListItemText,Dialog,DialogActions,DialogContent,
           DialogContentText,DialogTitle,
           TextField,ListItemIcon } from '@material-ui/core';
+
 import {Beenhere, VerifiedUser, Info} from '@material-ui/icons';
 import React,{Component} from 'react'
 import '@progress/kendo-theme-material/dist/all.css';
@@ -21,68 +22,116 @@ class MeetingScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.setUsers = this.setUsers.bind(this);
+
+        // fetch all the users in the meet from their uid and create a array
+        // of their name and uid for further use
+        this.setUsers = this.setUsers.bind(this); 
+
+        //convert twilio message to a kendo message object
         this.twilioMessageToKendoMessage = this.twilioMessageToKendoMessage.bind(this);
+
+        // convert firebase timestamp to JS date object
         this.convertTimestampToDate = this.convertTimestampToDate.bind(this);
+
+        // handle inputs in meeting settings
         this.changeDateAndTime = this.changeDateAndTime.bind(this);
         this.changeMeetingName = this.changeMeetingName.bind(this);
+
         this.handleBackArrow = this.handleBackArrow.bind(this);
+
+        // toogle screens
         this.toogleParticipantScreen = this.toogleParticipantScreen.bind(this);
         this.toogleSettingsScreen = this.toogleSettingsScreen.bind(this);
         this.toogleAddParticipantDialog = this.toogleAddParticipantDialog.bind(this);
+
+        // methods to add or remove participants to the meet using their email
         this.handleAddParticipant = this.handleAddParticipant.bind(this);
         this.addParticipant = this.addParticipant.bind(this);
         this.removeParticipant = this.removeParticipant.bind(this);
+
+        // method to make someone admin
         this.makeAdmin = this.makeAdmin.bind(this);
+
+        // save the changes made in the meet settings
         this.updateMeeting = this.updateMeeting.bind(this);
+
+        // handle the metting restriction setting
         this.handleRestriction = this.handleRestriction.bind(this);
+
+        // methods to load, send and display chats messages
+        this.setupChatClient = this.setupChatClient.bind(this);
+        this.messagesLoaded = this.messagesLoaded.bind(this);
+        this.messageAdded = this.messageAdded.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
+        this.handleError = this.handleError.bind(this);
+
         this.state = {
-            userUid:this.props.user.uid,
+            // current user uid and display name
+            userUid:this.props.user.uid, 
             userName:this.props.user.displayName,
+
+            // current meeting uid
             roomName:this.props.meeting.uid,
+
+            // error in loading chats
             error: null,
+
+            // state for chat loading
             isLoading: true,
+
+            // array of messages
             messages: [],
+
+            // array of user objects for users in the meeting
             users:[],
+
+            // the meeting object of selected meeting
             meeting:this.props.meeting,
+
+            // flags for opned screens
             settingScreen: false,
             participantScreen: false,
+
+            // get the scheduled date of the selected meeting
             meetScheduledAt: this.convertTimestampToDate(),
+
+            // the meeting title, uid and restriction status
             meetingName: this.props.meeting.name,
             meetingUid: this.props.meeting.uid,
             meetingRestricted: this.props.meeting.restricted,
+
             addParticipantDialog: false,
             addParticipantEmail:'',
             addingParticipant:false,
+
+            // check if the user is admin of the selected meeting
             isAdmin: this.props.meeting.participants.find(u => u.uid == this.props.user.uid)['admin']
 
         }
     
-        this.user = {
+        // the user details for kendo chat ui
+          this.user = {
             id: this.state.userUid,
             name: this.state.userName
           };
-      
-          this.setupChatClient = this.setupChatClient.bind(this);
-          this.messagesLoaded = this.messagesLoaded.bind(this);
-          this.messageAdded = this.messageAdded.bind(this);
-          this.sendMessage = this.sendMessage.bind(this);
-          this.handleError = this.handleError.bind(this);
+
       }
     
       componentDidMount() {
 
+        // Fetch a chat token for twilio server and setup a client identity
         fetch(`https://thistle-birman-7407.twil.io/chatToken?identity=${this.state.userUid}`)
-      .then(res => res.json())
-      .then(data => Chat.create(data.accessToken))
-      .then(this.setupChatClient)
-      .catch(this.handleError);
-    
-      this.setUsers();
+        .then(res => res.json())
+        .then(data => Chat.create(data.accessToken))
+        .then(this.setupChatClient)
+        .catch(this.handleError);
+        
+        this.setUsers(); // fetch and assign the user uid t=to their display names
          
       }
 
       componentDidUpdate(){
+        // if new mem is added then add its uid and name to the array of users.
         if(this.state.meeting != this.props.meeting){
           this.setUsers();
         }
@@ -93,19 +142,20 @@ class MeetingScreen extends Component {
       }
 
       convertTimestampToDate(){
-        const timestamp = this.props.meeting.scheduledAt;
-        const dateObj = new firebase.firestore.Timestamp(timestamp.seconds, timestamp.nanoseconds);
+        const timestamp = this.props.meeting.scheduledAt; // get the scheduled time of the meeting
+        // convert the scheduled time to date object
+        const dateObj = new firebase.firestore.Timestamp(timestamp.seconds, timestamp.nanoseconds); 
         const date = dateObj.toDate();
         return date;
         }
+
+      //---- Handle meeting settings inputs
 
       changeDateAndTime(date){
         this.setState({meetScheduledAt: date});
       }
       
-
-      changeMeetingName(field){
-        
+      changeMeetingName(field){ 
         this.setState({meetingName: field.target.value});
       }
 
@@ -117,79 +167,98 @@ class MeetingScreen extends Component {
         this.setState({meetingRestricted: !this.state.meetingRestricted})
       }
 
+      //---- Handle meeting settings inputs
+
+      // method to add the participant to the meeting from its email
       addParticipant(){
-        this.setState({addingParticipant:true})
+        this.setState({addingParticipant:true}) // show the processing modal
+
+        // if user tries to add himself then return
         if(this.state.addParticipantEmail === this.props.user.email){
             this.setState({addParticipantEmail:'', addingParticipant: false})
             this.toogleAddParticipantDialog();
             return;
         }
+
         const email = this.state.addParticipantEmail
         
-          db.collection('users').where('email','==',email).get().then(
-              (querySnapshot) => {
-                  if(!querySnapshot.empty){
-                      querySnapshot.docs.forEach(doc => {
-                        
-                          const data = doc.data();
-                          if(!this.state.meeting.participantsUid.includes(data['uid'])){
-                          const addParticipant = {
-                              displayName: data['displayName'],
-                              email: data['email'],
-                              uid: data['uid'],
-                              admin: false,
-
-                          }
-                          
-                          if(!this.state.meeting.participants.some(e => e.uid = data['uid'])){
-                          db.collection('Meetings').doc(this.props.meeting.uid).update({
-                            participants: [...this.props.meeting.participants, addParticipant],
-                            participantsUid:[...this.props.meeting.participantsUid, data['uid']]
-                          })
-                        }
-                        else{
-                          db.collection('Meetings').doc(this.props.meeting.uid).update({
-                            participantsUid:[...this.props.meeting.participantsUid, data['uid']]
-                          })
-                        }
-                        }
-                          
-                      }); 
-                  }
+        // fetch the user details of user with given email
+        db.collection('users').where('email','==',email).get().then(
+          (querySnapshot) => {
+            if(!querySnapshot.empty){
+              querySnapshot.docs.forEach(doc => {
+                // get the data of the document
+                const data = doc.data();
+                
+                // if the user is not already present in the meet then add him
+                if(!this.state.meeting.participantsUid.includes(data['uid'])){
+                  const addParticipant = {
+                    displayName: data['displayName'],
+                    email: data['email'],
+                    uid: data['uid'],
+                    admin: false,
+                    }
                   
-              }
-          ).then(() => this.setState({addingParticipant : false, addParticipantEmail:''}))
+                  // if the user is going to join for first time then add his data and uid to participants list
+                  if(!this.state.meeting.participants.some(e => e.uid = data['uid'])){
+                    db.collection('Meetings').doc(this.props.meeting.uid).update({
+                      participants: [...this.props.meeting.participants, addParticipant],
+                      participantsUid:[...this.props.meeting.participantsUid, data['uid']]
+                    })
+                  }
+                  // if the user was present in the meet but was removed later then
+                  // just add his uid to the participants list
+                  else{
+                    db.collection('Meetings').doc(this.props.meeting.uid).update({
+                    participantsUid:[...this.props.meeting.participantsUid, data['uid']]
+                    })
+                  }
+                }
+                          
+              }); 
+            }
+                  
+          })
+          .then(() => this.setState({addingParticipant : false, addParticipantEmail:''})) // after completion hide progress modal
           .catch( err =>{
               console.log(err)
           })
         
     }
 
+    // method to make someone admin
     makeAdmin(uid){
+      // get the details of the user who's to be made admin
       let currentUser = this.props.meeting.participants.find(u => u.uid == uid);
+      // remove him from the participants list
       let participants = this.props.meeting.participants.filter(u => u.uid != uid);
+      // set the user admin flag to true
       currentUser['admin'] = true;
+      // add this new data to the participants array
       participants = [...participants, currentUser];
+      // update the firebase document
       db.collection('Meetings').doc(this.state.roomName).update({
         participants: participants
       });
     }
 
+    // method to remove participant from meeting
     removeParticipant(participantUid){
-      this.setState({addingParticipant:true})
+      this.setState({addingParticipant:true}) // toogle the processing screen
+      // if user tries to remove himself then return
       if(participantUid === this.props.user.uid){
           this.setState({addingParticipant: false})
           return;
       }
-
+      // else remove te participant from the array and update db
       db.collection('Meetings').doc(this.props.meeting.uid).update({
         participantsUid: this.props.meeting.participantsUid.filter(e => e != participantUid)
       }).then(this.setState({addingParticipant:false}))
       .catch(e => console.log(e))
         
-  }
+    }
       
-
+    // fetch user details and construct a array of user uids and their display names
       setUsers(){
         let users ={}
         this.props.meeting.participants.map(participant => {
@@ -197,6 +266,8 @@ class MeetingScreen extends Component {
         })
         this.setState({users: users, meeting: this.props.meeting})
       }
+
+      //-- methods for sending, receiveing and handeling messages
     
       handleError(error) {
         console.error(error);
@@ -256,6 +327,8 @@ class MeetingScreen extends Component {
       sendMessage(event) {
         this.channel.sendMessage(event.message.text);
       }
+
+      //-- methods for sending, receiveing and handeling messages
     
       componentWillUnmount() {
         try{
@@ -275,6 +348,7 @@ class MeetingScreen extends Component {
         }
       }
 
+      // save and update the meeting changes in meeting settings
       updateMeeting(){
         
         db.collection('Meetings').doc(this.state.roomName).update({
@@ -292,6 +366,7 @@ class MeetingScreen extends Component {
         this.setState({participantScreen: true, settingScreen: false})
       }
 
+      // return the selected screen default is the chat screen
       chatsWidget(){
         if(this.state.settingScreen){
           return(
@@ -306,6 +381,7 @@ class MeetingScreen extends Component {
                 disabled={!this.state.isAdmin}/>
               </ListItem>
               </li>
+
               <Divider />
               <li key='meetingId'>
               <ListItem className="meetDetailsContainer">
@@ -313,6 +389,7 @@ class MeetingScreen extends Component {
                 <TextField value={this.state.meetingUid} disabled variant="outlined" />
               </ListItem>
               </li>
+
               <Divider />
               <li key='meetingSchedule'>
               <ListItem className="meetDetailsContainer">
@@ -327,18 +404,19 @@ class MeetingScreen extends Component {
               </ListItem>
               </li>
               <Divider />
+
               <li key='meetingRestricted'>
               <ListItem className="meetDetailsContainer">
               <FormControlLabel
-                        control={<Checkbox  disabled={!this.state.isAdmin}
-                        checked={this.state.meetingRestricted} id="restricted"
-                        />}
-                        label="Restricted : " onChange={this.handleRestriction}
-                        style={{margin:'1%'}} 
-                        labelPlacement="start"/>
-                        
+                control={<Checkbox  disabled={!this.state.isAdmin}
+                checked={this.state.meetingRestricted} id="restricted"
+                />}
+                label="Restricted : " onChange={this.handleRestriction}
+                style={{margin:'1%'}} 
+                labelPlacement="start"/>  
               </ListItem>
               </li>
+
               <Divider />
               <ListItem>
                 <Button variant="contained"
@@ -349,12 +427,12 @@ class MeetingScreen extends Component {
                  color="primary" onClick={this.updateMeeting}
                  className="backButton">Save</Button>:<></>
                   }
-                
               </ListItem>
             </List>
           </div>
           )
         }
+
         else if(this.state.participantScreen){
           return(
             <div style={{height:'92%'}}>
@@ -394,9 +472,11 @@ class MeetingScreen extends Component {
             </div>
           )
         }
+
         else if (this.state.error) {
           return (<div className="chatsLoading"><Divider /><p>{this.state.error}</p> </div>);
         }
+        
         else if (this.state.isLoading) {
           return (
               <div className="chatsLoading">
