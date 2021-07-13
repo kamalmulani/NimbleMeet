@@ -5,8 +5,8 @@
 **Try out the application [HERE](https://teamsclone-hosting.web.app/)**
 
 For more details you can see the :
-- [End-user Documentation.](https://github.com/prophet-x/NimbleMeet/tree/master/Documentation)
-- [Project Documentation.](https://github.com/prophet-x/NimbleMeet/tree/master/Documentation)
+- [End-user Documentation.](https://docs.google.com/document/d/1kZGtg0Dant_C0DXceSIZ3JdEgP0VZU44/edit)
+- [Project Documentation.](https://docs.google.com/document/d/1otgZ0irjIOBO81owPQU-kHpk6SgAMO-7/edit)
 
 ---
 
@@ -17,9 +17,9 @@ For more details you can see the :
 3.	Chat in between calls.
 4.	Schedule meetings.
 5.	Restrict the meetings and have control over who can join it.
-6.	Have a conversation before and after the meeting.
-7.	a meeting logs to access all your meetings in one place.
-8.	Authenticaion.
+6.	Have a chat conversation before and after the meeting.
+7.	Has a meeting logs to access all your meetings in one place.
+8.	Email Authenticaion.
 9.	Manage your user profile.
 10. Responsive UI.
 
@@ -41,7 +41,7 @@ NimbleMeet uses Twilio programable Video for video calls. Twilio programmable vi
 >- ***MCU*** - Multipoint Conferencing Unit
 >- ***SFU***- Standard Forwarding Unit
 
-I went on to use **SFU architecture** as it suits the best for my application requirements. For more details refer to [Project Documentation](https://github.com/prophet-x/NimbleMeet/tree/master/documentation).
+I went on to use **SFU architecture** as it suits the best for my application requirements. For more details refer to [Project Documentation](https://docs.google.com/document/d/1otgZ0irjIOBO81owPQU-kHpk6SgAMO-7/edit).
 
 ---
 
@@ -53,7 +53,7 @@ During Engage '21 we were Advised to use agile methodology so we can integrate a
 
 ## **Agile RoadMap**
 
-For more detail refer [Agile Process Documentation](https://github.com/prophet-x/NimbleMeet/tree/master/Documentation)
+For more detail refer [Agile Process Documentation](https://docs.google.com/document/d/1otgZ0irjIOBO81owPQU-kHpk6SgAMO-7/edit)
 
 | Week | Task Completed | Backlog |
 ------------ | ------------- | ---
