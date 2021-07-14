@@ -111,7 +111,11 @@ class InCallChats extends Component {
   }
 
   componentWillUnmount() {
-    this.client.shutdown();
+    try{
+      this.client.shutdown();
+      }catch{
+        
+      }
   }
 
   render() {

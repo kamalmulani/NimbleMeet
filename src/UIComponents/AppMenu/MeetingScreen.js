@@ -200,7 +200,7 @@ class MeetingScreen extends Component {
                     }
                   
                   // if the user is going to join for first time then add his data and uid to participants list
-                  if(!this.state.meeting.participants.some(e => e.uid = data['uid'])){
+                  if(!this.state.meeting.participants.some(e => e.uid == data['uid'])){
                     db.collection('Meetings').doc(this.props.meeting.uid).update({
                       participants: [...this.props.meeting.participants, addParticipant],
                       participantsUid:[...this.props.meeting.participantsUid, data['uid']]
