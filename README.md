@@ -1,6 +1,6 @@
 # NimbleMeet - A video Call Platform
 
-> [**NimbleMeet**](https://teamsclone-hosting.web.app/) is a platform for you to conduct all your meet ups, conferences, classes and video calls. This platform was built during [Engage ’21](https://microsoft.acehacker.com/engage2021/). If you want to dive in directly and use the platform for all your video calls and communication, you can refer to this [video]().
+> [**NimbleMeet**](https://teamsclone-hosting.web.app/) is a platform for you to conduct all your meet ups, conferences, classes and video calls. This platform was built during [Engage ’21](https://microsoft.acehacker.com/engage2021/). If you want to dive in directly and use the platform for all your video calls and communication, you can refer to this [video](https://youtu.be/fGbMYlIo85w).
 
 **Try out the application [HERE](https://teamsclone-hosting.web.app/)**
 
