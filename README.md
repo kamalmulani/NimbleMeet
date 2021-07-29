@@ -14,14 +14,18 @@ For more details you can see the :
 
 1. 	Host and join a meeting.
 2.	Add up to 20 participants in a video call.
-3.	Chat in between calls.
-4.	Schedule meetings.
+3.	Chat in between meeting, and these chats remain persistant even before and after the meetings. (**Adapt Feature**)
+4.	Schedule meetings and create rooms.
 5.	Restrict the meetings and have control over who can join it.
 6.	Have a chat conversation before and after the meeting.
-7.	Has a meeting logs to access all your meetings in one place.
-8.	Email Authenticaion.
-9.	Manage your user profile.
-10. Responsive UI.
+7.	ability to turn on/off the camera and mic in the meeting.
+8.	check mic and camera before joining any meet using the popup.
+9.	Has a meeting logs to access all your scheduled and completed meetings (rooms) in one place.
+10.	Admin privilages to the user who schedules meetings to change meeting title/ date-time/ restriction status and add or delete participants from meeting, rest all users are normal participant.
+11.	Sign up/ Sign In users.
+12.	Email Authenticaion of users.
+13.	Manage your user profile.
+14. Responsive UI.
 
 ---
 ## Technologies used
